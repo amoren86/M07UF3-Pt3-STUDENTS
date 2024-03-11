@@ -11,5 +11,7 @@
 | Spring orm                        | 6.1.4                                 | https://docs.spring.io/spring-framework/reference/data-access/orm.html |
 | MySql Connector                   | 8.3.0                                 | https://www.mysql.com/products/connector/ |
 | H2 database                       | 2.2.224                               | https://www.h2database.com/html/main.html |
+| Hibernate core                    | 6.4.4.Final                           | https://hibernate.org/ |
+| Hibernate validator               | 8.0.1.Final                           | https://hibernate.org/validator/ |
 | Junit                             | 5.10.2                                | https://junit.org/junit5/ |
 | Mockito                           | 5.10.0                                | https://site.mockito.org/ |
