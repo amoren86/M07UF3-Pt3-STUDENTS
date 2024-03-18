@@ -28,6 +28,7 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "recipient_name")
 	private String recipientName;
 
 	@NotBlank
