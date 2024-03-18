@@ -1,6 +1,8 @@
+
 package cat.institutmarianao.domain;
 
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.Objects;
 
 import jakarta.persistence.Basic;
@@ -12,8 +14,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -29,18 +32,19 @@ public class Item implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long reference;
 
-	@NotEmpty
+	@NotBlank
 	@Size(max = MAX_NAME)
 	private String name;
 
-	@NotEmpty
+	@NotBlank
 	@Size(max = MAX_DESCRIPTION)
 	private String description;
 
 	@NotNull
+	@PositiveOrZero
 	private Double price;
 
-	@NotEmpty
+	@NotNull
 	@Basic(fetch = FetchType.LAZY)
 	@Lob
 	@Column(columnDefinition = "BLOB")
@@ -80,6 +84,14 @@ public class Item implements Serializable {
 
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+
+	public String getBase64Image() {
+		return Base64.getEncoder().encodeToString(image);
+	}
+
+	public void setBase64Image(String b64Image) {
+		image = Base64.getDecoder().decode(b64Image);
 	}
 
 	@Override

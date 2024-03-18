@@ -19,12 +19,6 @@
 			value="cat.institutmarianao.repository.OrderDao" />
 	</bean>
 
-	<bean id="orderItemDao" class="org.mockito.Mockito"
-		factory-method="mock">
-		<constructor-arg type="java.lang.Class"
-			value="cat.institutmarianao.repository.OrderItemDao" />
-	</bean>
-
 	<bean id="userDao" class="org.mockito.Mockito"
 		factory-method="mock">
 		<constructor-arg type="java.lang.Class"

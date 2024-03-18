@@ -16,7 +16,6 @@ import org.jboss.logging.Logger;
 import cat.institutmarianao.domain.Address;
 import cat.institutmarianao.domain.Item;
 import cat.institutmarianao.domain.Order;
-import cat.institutmarianao.domain.OrderItem;
 import cat.institutmarianao.domain.User;
 
 public class Mock {
@@ -58,17 +57,6 @@ public class Mock {
 		item.setPrice(new Random().nextDouble(10, 1000));
 		item.setImage(getRandomImage());
 		return item;
-	}
-
-	public static OrderItem createOrderItem(Order order, Item item) {
-
-		OrderItem orderItem = new OrderItem();
-
-		orderItem.setOrder(order);
-		orderItem.setItem(item);
-
-		orderItem.setQuantity(new Random().nextInt(1, Integer.MAX_VALUE));
-		return orderItem;
 	}
 
 	private static Address createAddress(User client) {

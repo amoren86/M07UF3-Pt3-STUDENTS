@@ -37,7 +37,7 @@ public class ItemDaoImpl implements ItemDao {
 		Root<Item> itemRoot = query.from(Item.class);
 
 		query.select(itemRoot);
-		return session.createQuery(query).getResultList();
+		return session.createQuery(query).list();
 	}
 
 	@Override

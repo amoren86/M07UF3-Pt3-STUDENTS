@@ -1,35 +1,21 @@
 package cat.institutmarianao.repository;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
-
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = { "classpath:/dao-test-context.xml" })
+//TODO Do the dao tests
 class OrderDaoTest {
-	@Autowired
-	private UserDao userDao;
-	@Autowired
-	private OrderDao orderDao;
 
-	@Test
-	@Transactional
-	void saveAndGetOk() {
-		// TODO test OrderDao.save and OrderDao.get
+	void saveAndGetShouldSaveAndThenGet() {
+		// TODO save and get test
 	}
 
-	@Test
-	@Transactional
-	void findAllOk() {
-		// TODO test OrderDao.findAllOk
+	void findAllShouldReturnAllItems() {
+		// TODO getAll test
 	}
 
-	@Test
-	@Transactional
-	void findByUsernameOk() {
-		// TODO test OrderDao.findByUsernameOk
+	void findByUsernameShouldReturnAllUsernameItems() {
+		// TODO findByUsername test
+	}
+
+	void updateShouldSaveChanges() {
+		// TODO update test
 	}
 }

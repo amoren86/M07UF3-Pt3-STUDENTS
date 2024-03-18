@@ -2,21 +2,12 @@ package cat.institutmarianao.repository.impl;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import cat.institutmarianao.domain.Order;
 import cat.institutmarianao.domain.User;
 import cat.institutmarianao.repository.OrderDao;
-import jakarta.transaction.Transactional;
 
-@Transactional
-@Repository
+//TODO Convert it in a transactional repository
 public class OrderDaoImpl implements OrderDao {
-	@Autowired
-	private SessionFactory sessionFactory;
-
 	@Override
 	public Order get(Long reference) {
 		// TODO get order by reference
@@ -38,5 +29,11 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public void save(Order order) {
 		// TODO save order
+	}
+
+	@Override
+	public Order update(Order order) {
+		// TODO update order
+		return null;
 	}
 }

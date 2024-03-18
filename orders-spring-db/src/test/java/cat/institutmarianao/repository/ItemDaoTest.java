@@ -1,10 +1,12 @@
 package cat.institutmarianao.repository;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,50 +26,55 @@ class ItemDaoTest {
 
 	@Test
 	@Transactional
-	void saveAndGetOk() {
-		/* Setup */
+	void saveAndGetShouldSaveAndThenGet() {
+		/* Setup item */
 		Item item = Mock.createItem();
 
-		/* Item does not exists in database */
+		/* Assert item does not exists in the database */
 		assertNull(item.getReference());
 		assertEquals(0, itemDao.getAll().size());
 
-		/* Test methods */
+		/* Test save item */
 		itemDao.save(item);
+
+		/* Test get item by reference */
 		Item itemFromDb = itemDao.get(item.getReference());
 
-		/* Verification - item exists and has the same itemname */
+		/* Verification */
+		/* Assert item exists in the database */
 		assertNotNull(itemFromDb);
-		assertSame(item, itemFromDb);
 
+		/* Assert item in the database is equals to saved one */
+		assertEquals(item, itemFromDb);
 	}
 
 	@Test
 	@Transactional
-	void findAllOk() {
-		/* Setup */
-		Item[] items = { Mock.createItem(), Mock.createItem(), Mock.createItem(), Mock.createItem() };
+	void findAllShouldReturnAllItems() {
+		/* Setup some items */
+		List<Item> items = Arrays.asList(Mock.createItem(), Mock.createItem(), Mock.createItem(), Mock.createItem());
 
-		/* Item does not exists in database */
+		/* Items does not exists in database */
 		for (Item item : items) {
 			assertNull(item.getReference());
 		}
-		/* Test method - empty */
+
+		/* Test get all items should return nothing */
 		assertEquals(0, itemDao.getAll().size());
 
-		/* Setup */
+		/* Save all items in the database */
 		for (Item item : items) {
 			itemDao.save(item);
 		}
 
-		/* Test method - retrieve all */
-		Item[] itemsFromDb = itemDao.getAll().toArray(new Item[items.length]);
+		/* Test get all items */
+		List<Item> itemsFromDb = itemDao.getAll();
 
+		/* Verification */
 		/* Items are all in the database */
-		assertEquals(items.length, itemDao.getAll().size());
+		assertEquals(items.size(), itemDao.getAll().size());
 
-		/* Verification - check all items */
-		assertArrayEquals(items, itemsFromDb);
-
+		/* Items in the database are the stored ones */
+		assertTrue(items.containsAll(itemsFromDb));
 	}
 }

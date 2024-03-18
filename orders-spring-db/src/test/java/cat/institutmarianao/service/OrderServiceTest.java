@@ -1,53 +1,32 @@
 package cat.institutmarianao.service;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import cat.institutmarianao.repository.OrderDao;
-import cat.institutmarianao.repository.OrderItemDao;
-
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = { "classpath:/services-test-context.xml" })
+//TODO Do the services tests
 class OrderServiceTest {
-	@Autowired
-	private OrderDao orderDao;
-
-	@Autowired
-	private OrderItemDao orderItemDao;
-
-	@Autowired
-	private OrderService orderService;
 
 	@Test
-	void getOrderOk() {
-		// TODO test OrderService.get
+	void getOrderShouldCallDaoWithSameReference() {
+		// TODO get test
 	}
 
 	@Test
-	void getAllOk() {
-		// TODO test OrderService.getAll
+	void getAllShouldCallDao() {
+		// TODO getAll test
 	}
 
 	@Test
-	void findByUserOk() {
-		// TODO test OrderService.findByUser
+	void findByUserShouldCallDaoWithSameUser() {
+		// TODO findByUser test
 	}
 
 	@Test
 	void saveOk() {
-		// TODO test OrderService.save
+		// TODO save test
 	}
 
 	@Test
-	void setItemQuantityOk() {
-		// TODO test OrderService.setItemQuantity
-	}
-
-	@Test
-	void addItemQuantityOk() {
-		// TODO test OrderService.addItemQuantity
+	void updateOk() {
+		// TODO update test
 	}
 }

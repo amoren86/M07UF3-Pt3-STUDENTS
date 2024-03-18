@@ -1,8 +1,8 @@
 package cat.institutmarianao.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,12 +22,12 @@ class UserDaoTest {
 
 	@Test
 	@Transactional
-	void saveAndGetOk() {
-		/* Setup */
+	void saveAndGetShouldSaveAndThenGet() {
+		/* Setup a user */
 		String username = Mock.createRandomString(User.MAX_USERNAME);
 		User user = Mock.createUser(username);
 
-		/* User does not exists in database */
+		/* Assert item does not exists in the database */
 		User userFromDb = userDao.get(username);
 		assertNull(userFromDb);
 
@@ -37,6 +37,6 @@ class UserDaoTest {
 
 		/* Verification - user exists and has the same values */
 		assertNotNull(userFromDb);
-		assertSame(user, userFromDb);
+		assertEquals(user, userFromDb);
 	}
 }

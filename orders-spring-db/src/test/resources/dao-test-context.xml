@@ -46,10 +46,6 @@
 		class="cat.institutmarianao.repository.impl.OrderDaoImpl">
 	</bean>
 	
-	<bean id="orderItemDao"
-		class="cat.institutmarianao.repository.impl.OrderItemDaoImpl">
-	</bean>
-
 	<bean id="userDao"
 		class="cat.institutmarianao.repository.impl.UserDaoImpl">
 	</bean>

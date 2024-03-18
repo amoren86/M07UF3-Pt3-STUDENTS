@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Temps de generació: 10-03-2024 a les 00:46:03
+-- Temps de generació: 15-03-2024 a les 00:44:13
 -- Versió del servidor: 10.4.27-MariaDB
 -- Versió de PHP: 8.2.0
 
@@ -29,13 +29,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `addresses` (
   `id` bigint(20) NOT NULL,
-  `recipientName` varchar(255) DEFAULT NULL,
+  `recipient_name` varchar(255) DEFAULT NULL,
   `address` varchar(150) DEFAULT NULL,
   `zip_code` varchar(20) DEFAULT NULL,
   `city` varchar(150) DEFAULT NULL,
   `state` varchar(150) DEFAULT NULL,
   `country` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -49,7 +49,7 @@ CREATE TABLE `items` (
   `description` varchar(250) DEFAULT NULL,
   `price` double NOT NULL,
   `image` blob DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -60,13 +60,11 @@ CREATE TABLE `items` (
 CREATE TABLE `orders` (
   `reference` bigint(20) NOT NULL,
   `client_username` varchar(255) NOT NULL,
-  `deliveryAddress_id` bigint(20) NOT NULL,
-  `startDate` datetime(6) DEFAULT NULL,
-  `deliveryDate` datetime(6) DEFAULT NULL,
-  `state` int(11) DEFAULT NULL,
-  `totalQuantity` int(11) DEFAULT NULL,
-  `totalAmount` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `delivery_address_id` bigint(20) NOT NULL,
+  `start_date` datetime(6) DEFAULT NULL,
+  `delivery_date` datetime(6) DEFAULT NULL,
+  `state` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -78,7 +76,7 @@ CREATE TABLE `orders_items` (
   `order_reference` bigint(20) NOT NULL,
   `item_reference` bigint(20) NOT NULL,
   `quantity` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -87,12 +85,12 @@ CREATE TABLE `orders_items` (
 --
 
 CREATE TABLE `users` (
-  `username` varchar(50) NOT NULL,
   `password` varchar(50) DEFAULT NULL,
-  `role` varchar(255) DEFAULT NULL,
+  `username` varchar(50) NOT NULL,
   `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `last_name` varchar(255) DEFAULT NULL,
+  `role` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Índexs per a les taules bolcades
@@ -115,7 +113,7 @@ ALTER TABLE `items`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`reference`),
-  ADD UNIQUE KEY `UK_fnnbgwan86a7sbyyk5sf75mkd` (`deliveryAddress_id`),
+  ADD UNIQUE KEY `UK_fnnbgwan86a7sbyyk5sf75mkd` (`delivery_address_id`),
   ADD KEY `FKk5gjboftdpqsvqx0mrrv3a4f` (`client_username`);
 
 --
@@ -162,7 +160,7 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `FKk5gjboftdpqsvqx0mrrv3a4f` FOREIGN KEY (`client_username`) REFERENCES `users` (`username`),
-  ADD CONSTRAINT `FKtcj2xbl89q1ydb3y1sf0hnqmi` FOREIGN KEY (`deliveryAddress_id`) REFERENCES `addresses` (`id`);
+  ADD CONSTRAINT `FKtcj2xbl89q1ydb3y1sf0hnqmi` FOREIGN KEY (`delivery_address_id`) REFERENCES `addresses` (`id`);
 
 --
 -- Restriccions per a la taula `orders_items`

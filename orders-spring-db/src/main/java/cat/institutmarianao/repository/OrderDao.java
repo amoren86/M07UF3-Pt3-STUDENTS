@@ -13,4 +13,6 @@ public interface OrderDao {
 	List<Order> findByUser(User client);
 
 	void save(Order order);
+
+	Order update(Order order);
 }

@@ -2,6 +2,8 @@ package cat.institutmarianao.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 //TODO Put JPA and Validation annotations
@@ -10,8 +12,6 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String[] STATES = { "order.state.pending", "order.state.transit", "order.state.delivery",
 			"order.state.absent", "order.state.pending.collection", "order.state.returned" };
-
-	private static int referenceSequence = 1;
 
 	private Long reference;
 
@@ -22,14 +22,9 @@ public class Order implements Serializable {
 	private Date startDate;
 	private Date deliveryDate;
 
+	private Map<Item, Integer> items;
+
 	private Integer state = 0;
-
-	private Integer totalQuantity = 0;
-	private Double totalAmount = 0d;
-
-	public static int incReferenceSequence() {
-		return referenceSequence++;
-	}
 
 	public Long getReference() {
 		return reference;
@@ -75,12 +70,23 @@ public class Order implements Serializable {
 		this.state = state;
 	}
 
+	public Map<Item, Integer> getItems() {
+		if (items == null) {
+			items = new HashMap<>();
+		}
+		return items;
+	}
+
+	public void setItems(Map<Item, Integer> items) {
+		this.items = Objects.requireNonNullElse(items, new HashMap<>());
+	}
+
 	public Integer getTotalQuantity() {
-		return totalQuantity;
+		return items.values().stream().reduce(0, Integer::sum);
 	}
 
 	public Double getTotalAmount() {
-		return totalAmount;
+		return items.entrySet().stream().map(e -> e.getKey().getPrice() * e.getValue()).reduce(0d, Double::sum);
 	}
 
 	@Override

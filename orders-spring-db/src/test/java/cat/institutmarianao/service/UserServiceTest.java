@@ -1,7 +1,7 @@
 package cat.institutmarianao.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,19 +26,21 @@ class UserServiceTest {
 	private UserService userService;
 
 	@Test
-	void getUserOk() {
-		/* Setup */
+	void getUserShouldCallDaoWithSameUsername() {
+		/* Setup username and user */
 		String username = Mock.createRandomString(User.MAX_USERNAME);
-		User user = Mock.createUser(username);
+		User user = mock(User.class);
 
+		/* When call dao with same username, get the user */
 		when(userDao.get(username)).thenReturn(user);
 
-		/* Test */
+		/* Test get user by username */
 		User userFromDb = userService.get(username);
 
 		/* Verification */
-		assertEquals(username, userFromDb.getUsername());
+		/* Service returns same user as dao */
 		assertSame(user, userFromDb);
+		/* Dao was called once */
 		verify(userDao, times(1)).get(username);
 	}
 }

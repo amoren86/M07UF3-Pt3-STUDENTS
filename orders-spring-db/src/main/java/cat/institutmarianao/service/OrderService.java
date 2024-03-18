@@ -2,21 +2,18 @@ package cat.institutmarianao.service;
 
 import java.util.List;
 
-import cat.institutmarianao.domain.Item;
 import cat.institutmarianao.domain.Order;
 import cat.institutmarianao.domain.User;
+import jakarta.validation.constraints.NotNull;
 
 public interface OrderService {
 	List<Order> getAll();
 
-	Order get(Long reference);
+	Order get(@NotNull Long reference);
 
-	List<Order> findByUser(User client);
+	List<Order> findByUser(@NotNull User client);
 
-	void save(Order order);
+	void save(@NotNull Order order);
 
-	void setItemQuantity(Order order, Item item, int incQuantity);
-
-	void addItemQuantity(Order order, Item item, int incQuantity);
-
+	Order update(Order order);
 }

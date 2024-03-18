@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import cat.institutmarianao.domain.Item;
 import cat.institutmarianao.repository.ItemDao;
 import cat.institutmarianao.service.ItemService;
+import jakarta.validation.constraints.NotNull;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -15,7 +16,7 @@ public class ItemServiceImpl implements ItemService {
 	private ItemDao itemDao;
 
 	@Override
-	public Item get(Long reference) {
+	public Item get(@NotNull Long reference) {
 		return itemDao.get(reference);
 	}
 

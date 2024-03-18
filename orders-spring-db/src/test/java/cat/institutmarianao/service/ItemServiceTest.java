@@ -28,34 +28,40 @@ class ItemServiceTest {
 	private ItemService itemService;
 
 	@Test
-	void getItemOk() {
-		/* Setup */
+	void getItemShouldCallDaoWithSameReference() {
+		/* Setup reference and item */
 		Long reference = new Random().nextLong();
 		Item item = mock(Item.class);
 
+		/* When call dao with same reference, get the item */
 		when(itemDao.get(reference)).thenReturn(item);
 
-		/* Test */
+		/* Test get item by reference */
 		Item itemFromDb = itemService.get(reference);
 
 		/* Verification */
+		/* Service returns item user as dao */
 		assertSame(item, itemFromDb);
+		/* Dao was called once */
 		verify(itemDao, times(1)).get(reference);
 	}
 
 	@Test
-	void getAllOk() {
-		/* Setup */
+	void getAllShouldCallDao() {
+		/* Setup items */
 		@SuppressWarnings("unchecked")
 		List<Item> items = mock(List.class);
 
+		/* When call dao, get all items */
 		when(itemDao.getAll()).thenReturn(items);
 
-		/* Test */
+		/* Test get all items */
 		List<Item> itemsFromDb = itemService.getAll();
 
 		/* Verification */
+		/* Service returns item user as dao */
 		assertSame(items, itemsFromDb);
+		/* Dao was called once */
 		verify(itemDao, times(1)).getAll();
 	}
 
