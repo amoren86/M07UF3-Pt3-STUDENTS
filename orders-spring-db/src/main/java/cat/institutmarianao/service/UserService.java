@@ -1,6 +1,6 @@
 package cat.institutmarianao.service;
 
-import cat.institutmarianao.domain.User;
+import cat.institutmarianao.model.User;
 import jakarta.validation.constraints.NotBlank;
 
 public interface UserService {

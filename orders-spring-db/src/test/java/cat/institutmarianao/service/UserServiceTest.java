@@ -12,15 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import cat.institutmarianao.domain.User;
-import cat.institutmarianao.repository.UserDao;
+import cat.institutmarianao.ServiceTestContext;
+import cat.institutmarianao.model.User;
+import cat.institutmarianao.repository.UserRepository;
 import cat.institutmarianao.utils.Mock;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = { "classpath:/services-test-context.xml" })
+
+@ContextConfiguration(classes = { ServiceTestContext.class })
 class UserServiceTest {
 	@Autowired
-	private UserDao userDao;
+	private UserRepository userDao;
 
 	@Autowired
 	private UserService userService;

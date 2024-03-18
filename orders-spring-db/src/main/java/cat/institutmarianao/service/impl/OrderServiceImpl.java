@@ -2,8 +2,8 @@ package cat.institutmarianao.service.impl;
 
 import java.util.List;
 
-import cat.institutmarianao.domain.Order;
-import cat.institutmarianao.domain.User;
+import cat.institutmarianao.model.Order;
+import cat.institutmarianao.model.User;
 import cat.institutmarianao.service.OrderService;
 import jakarta.validation.constraints.NotNull;
 
@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order update(Order order) {
+	public Order update(@NotNull Order order) {
 		// TODO update order
 		return null;
 	}

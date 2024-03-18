@@ -2,8 +2,8 @@ package cat.institutmarianao.service;
 
 import java.util.List;
 
-import cat.institutmarianao.domain.Order;
-import cat.institutmarianao.domain.User;
+import cat.institutmarianao.model.Order;
+import cat.institutmarianao.model.User;
 import jakarta.validation.constraints.NotNull;
 
 public interface OrderService {
@@ -15,5 +15,5 @@ public interface OrderService {
 
 	void save(@NotNull Order order);
 
-	Order update(Order order);
+	Order update(@NotNull Order order);
 }

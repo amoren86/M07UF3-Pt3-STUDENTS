@@ -15,14 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import cat.institutmarianao.domain.Item;
-import cat.institutmarianao.repository.ItemDao;
+import cat.institutmarianao.ServiceTestContext;
+import cat.institutmarianao.model.Item;
+import cat.institutmarianao.repository.ItemRepository;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = { "classpath:/services-test-context.xml" })
+
+@ContextConfiguration(classes = { ServiceTestContext.class })
 class ItemServiceTest {
 	@Autowired
-	private ItemDao itemDao;
+	private ItemRepository itemDao;
 
 	@Autowired
 	private ItemService itemService;

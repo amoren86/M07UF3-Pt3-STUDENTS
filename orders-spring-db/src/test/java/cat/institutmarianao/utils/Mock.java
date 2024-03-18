@@ -13,10 +13,10 @@ import java.util.Random;
 
 import org.jboss.logging.Logger;
 
-import cat.institutmarianao.domain.Address;
-import cat.institutmarianao.domain.Item;
-import cat.institutmarianao.domain.Order;
-import cat.institutmarianao.domain.User;
+import cat.institutmarianao.model.Address;
+import cat.institutmarianao.model.Item;
+import cat.institutmarianao.model.Order;
+import cat.institutmarianao.model.User;
 
 public class Mock {
 
