@@ -21,12 +21,12 @@ class OrderServiceTest {
 	}
 
 	@Test
-	void saveOk() {
+	void saveShouldCallDao() {
 		// TODO save test
 	}
 
 	@Test
-	void updateOk() {
+	void updateShouldCallDao() {
 		// TODO update test
 	}
 }
