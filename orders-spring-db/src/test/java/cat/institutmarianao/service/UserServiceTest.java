@@ -22,7 +22,7 @@ import cat.institutmarianao.utils.Mock;
 @ContextConfiguration(classes = { ServiceTestContext.class })
 class UserServiceTest {
 	@Autowired
-	private UserRepository userDao;
+	private UserRepository userRepository;
 
 	@Autowired
 	private UserService userService;
@@ -34,7 +34,7 @@ class UserServiceTest {
 		User user = mock(User.class);
 
 		/* When call dao with same username, get the user */
-		when(userDao.get(username)).thenReturn(user);
+		when(userRepository.get(username)).thenReturn(user);
 
 		/* Test get user by username */
 		User userFromDb = userService.get(username);
@@ -43,6 +43,6 @@ class UserServiceTest {
 		/* Service returns same user as dao */
 		assertSame(user, userFromDb);
 		/* Dao was called once */
-		verify(userDao, times(1)).get(username);
+		verify(userRepository, times(1)).get(username);
 	}
 }

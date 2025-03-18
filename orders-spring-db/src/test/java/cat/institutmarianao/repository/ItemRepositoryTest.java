@@ -20,27 +20,26 @@ import cat.institutmarianao.model.Item;
 import cat.institutmarianao.utils.Mock;
 
 @ExtendWith(SpringExtension.class)
-//@ContextConfiguration(locations = { "classpath:/repository-test-context.xml" })
 @ContextConfiguration(classes = { RepositoryTestContext.class })
+@Transactional
 class ItemRepositoryTest {
 	@Autowired
-	private ItemRepository ItemRepository;
+	private ItemRepository itemRepository;
 
 	@Test
-	@Transactional
 	void saveAndGetShouldSaveAndThenGet() {
 		/* Setup item */
 		Item item = Mock.createItem();
 
 		/* Assert item does not exists in the database */
 		assertNull(item.getReference());
-		assertEquals(0, ItemRepository.getAll().size());
+		assertEquals(0, itemRepository.getAll().size());
 
 		/* Test save item */
-		ItemRepository.save(item);
+		itemRepository.save(item);
 
 		/* Test get item by reference */
-		Item itemFromDb = ItemRepository.get(item.getReference());
+		Item itemFromDb = itemRepository.get(item.getReference());
 
 		/* Verification */
 		/* Assert item exists in the database */
@@ -51,7 +50,6 @@ class ItemRepositoryTest {
 	}
 
 	@Test
-	@Transactional
 	void findAllShouldReturnAllItems() {
 		/* Setup some items */
 		List<Item> items = Arrays.asList(Mock.createItem(), Mock.createItem(), Mock.createItem(), Mock.createItem());
@@ -62,19 +60,19 @@ class ItemRepositoryTest {
 		}
 
 		/* Test get all items should return nothing */
-		assertEquals(0, ItemRepository.getAll().size());
+		assertEquals(0, itemRepository.getAll().size());
 
 		/* Save all items in the database */
 		for (Item item : items) {
-			ItemRepository.save(item);
+			itemRepository.save(item);
 		}
 
 		/* Test get all items */
-		List<Item> itemsFromDb = ItemRepository.getAll();
+		List<Item> itemsFromDb = itemRepository.getAll();
 
 		/* Verification */
 		/* Items are all in the database */
-		assertEquals(items.size(), ItemRepository.getAll().size());
+		assertEquals(items.size(), itemRepository.getAll().size());
 
 		/* Items in the database are the stored ones */
 		assertTrue(items.containsAll(itemsFromDb));

@@ -24,7 +24,7 @@ import cat.institutmarianao.repository.ItemRepository;
 @ContextConfiguration(classes = { ServiceTestContext.class })
 class ItemServiceTest {
 	@Autowired
-	private ItemRepository itemDao;
+	private ItemRepository itemRepository;
 
 	@Autowired
 	private ItemService itemService;
@@ -36,7 +36,7 @@ class ItemServiceTest {
 		Item item = mock(Item.class);
 
 		/* When call dao with same reference, get the item */
-		when(itemDao.get(reference)).thenReturn(item);
+		when(itemRepository.get(reference)).thenReturn(item);
 
 		/* Test get item by reference */
 		Item itemFromDb = itemService.get(reference);
@@ -45,7 +45,7 @@ class ItemServiceTest {
 		/* Service returns item user as dao */
 		assertSame(item, itemFromDb);
 		/* Dao was called once */
-		verify(itemDao, times(1)).get(reference);
+		verify(itemRepository, times(1)).get(reference);
 	}
 
 	@Test
@@ -55,7 +55,7 @@ class ItemServiceTest {
 		List<Item> items = mock(List.class);
 
 		/* When call dao, get all items */
-		when(itemDao.getAll()).thenReturn(items);
+		when(itemRepository.getAll()).thenReturn(items);
 
 		/* Test get all items */
 		List<Item> itemsFromDb = itemService.getAll();
@@ -64,7 +64,7 @@ class ItemServiceTest {
 		/* Service returns item user as dao */
 		assertSame(items, itemsFromDb);
 		/* Dao was called once */
-		verify(itemDao, times(1)).getAll();
+		verify(itemRepository, times(1)).getAll();
 	}
 
 }
