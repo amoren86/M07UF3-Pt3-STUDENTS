@@ -5,17 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-
-@Entity
-@Table(name = "users")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -24,26 +13,12 @@ public class User implements Serializable {
 	public static final int MIN_PASSWORD = 4;
 	public static final int MAX_PASSWORD = 50;
 
-	@Id
-	@NotBlank
-	@Size(max = MAX_USERNAME)
 	private String username;
-
-	@NotBlank
-	@Size(min = MIN_PASSWORD, max = MAX_PASSWORD)
 	private String password;
-
-	@NotBlank
 	private String role;
-
-	@NotBlank
-	@Column(name = "first_name")
 	private String firstName;
-
-	@Column(name = "last_name")
 	private String lastName;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
 	private List<Order> orders;
 
 	public String getUsername() {
