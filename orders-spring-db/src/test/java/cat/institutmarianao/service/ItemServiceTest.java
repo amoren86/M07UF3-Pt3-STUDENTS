@@ -30,40 +30,40 @@ class ItemServiceTest {
 	private ItemService itemService;
 
 	@Test
-	void getItemShouldCallDaoWithSameReference() {
+	void getItemShouldCallRepositoryWithSameReference() {
 		/* Setup reference and item */
 		Long reference = new Random().nextLong();
 		Item item = mock(Item.class);
 
-		/* When call dao with same reference, get the item */
+		/* When call repository with same reference, get the item */
 		when(itemRepository.get(reference)).thenReturn(item);
 
 		/* Test get item by reference */
 		Item itemFromDb = itemService.get(reference);
 
 		/* Verification */
-		/* Service returns item user as dao */
+		/* Service returns item user as repository */
 		assertSame(item, itemFromDb);
-		/* Dao was called once */
+		/* Repository was called once */
 		verify(itemRepository, times(1)).get(reference);
 	}
 
 	@Test
-	void getAllShouldCallDao() {
+	void getAllShouldCallRepository() {
 		/* Setup items */
 		@SuppressWarnings("unchecked")
 		List<Item> items = mock(List.class);
 
-		/* When call dao, get all items */
+		/* When call repository, get all items */
 		when(itemRepository.getAll()).thenReturn(items);
 
 		/* Test get all items */
 		List<Item> itemsFromDb = itemService.getAll();
 
 		/* Verification */
-		/* Service returns item user as dao */
+		/* Service returns item user as repository */
 		assertSame(items, itemsFromDb);
-		/* Dao was called once */
+		/* Repository was called once */
 		verify(itemRepository, times(1)).getAll();
 	}
 

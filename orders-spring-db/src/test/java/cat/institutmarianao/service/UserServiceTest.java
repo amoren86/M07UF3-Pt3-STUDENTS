@@ -28,21 +28,21 @@ class UserServiceTest {
 	private UserService userService;
 
 	@Test
-	void getUserShouldCallDaoWithSameUsername() {
+	void getUserShouldCallRepositoryWithSameUsername() {
 		/* Setup username and user */
 		String username = Mock.createRandomString(User.MAX_USERNAME);
 		User user = mock(User.class);
 
-		/* When call dao with same username, get the user */
+		/* When call repository with same username, get the user */
 		when(userRepository.get(username)).thenReturn(user);
 
 		/* Test get user by username */
 		User userFromDb = userService.get(username);
 
 		/* Verification */
-		/* Service returns same user as dao */
+		/* Service returns same user as repository */
 		assertSame(user, userFromDb);
-		/* Dao was called once */
+		/* Repository was called once */
 		verify(userRepository, times(1)).get(username);
 	}
 }

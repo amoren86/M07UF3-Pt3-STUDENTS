@@ -11,16 +11,16 @@ import jakarta.validation.constraints.NotNull;
 public class ItemServiceImpl implements ItemService {
 
 	// TODO Inject repository
-	private ItemRepository itemDao;
+	private ItemRepository itemRepository;
 
 	@Override
 	public Item get(@NotNull Long reference) {
-		return itemDao.get(reference);
+		return itemRepository.get(reference);
 	}
 
 	@Override
 	public List<Item> getAll() {
-		return itemDao.getAll();
+		return itemRepository.getAll();
 	}
 
 }

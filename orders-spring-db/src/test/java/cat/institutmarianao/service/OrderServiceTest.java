@@ -1,45 +1,32 @@
 package cat.institutmarianao.service;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.util.List;
-import java.util.Random;
-
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 //TODO Do the services tests
 class OrderServiceTest {
 
 	@Test
-	void getOrderShouldCallDaoWithSameReference() {
+	void getOrderShouldCallRepositoryWithSameReference() {
 		// TODO get test
 	}
 
 	@Test
-	void getAllShouldCallDao() {
+	void getAllShouldCallRepository() {
 		// TODO getAll test
 	}
 
 	@Test
-	void findByUserShouldCallDaoWithSameUser() {
+	void findByUserShouldCallRepositoryWithSameUser() {
 		// TODO findByUser test
 	}
 
 	@Test
-	void saveShouldCallDao() {
+	void saveShouldCallRepository() {
 		// TODO save test
 	}
 
 	@Test
-	void updateShouldCallDao() {
+	void updateShouldCallRepository() {
 		// TODO update test
 	}
 }
